@@ -6,37 +6,43 @@
     <title>Aidan Morrison | Garage</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
+        /* Specific overrides for the Garage page to maintain the terminal feel */
         .table-container {
             width: 100%;
             overflow-x: auto;
             margin-top: 1.5rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 0; /* Sharp corners for cyberpunk */
             -webkit-overflow-scrolling: touch;
         }
         .performance-table {
             width: 100%;
             border-collapse: collapse;
-            background: white;
-            min-width: 450px; /* Ensures table doesn't get squashed too much */
+            background: var(--surface-color);
+            min-width: 450px;
         }
         .performance-table th, .performance-table td {
             padding: 12px;
             text-align: center;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--border-color);
         }
         .performance-table th {
-            background-color: var(--light-bg);
+            background-color: var(--bg-color);
             font-weight: 700;
-            border-bottom: 2px solid var(--border);
+            border-bottom: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+        }
+        .performance-table td {
+            color: var(--text-primary);
         }
         .build-label {
-            color: var(--accent);
+            color: var(--neon-pink);
             display: block;
             margin-bottom: 10px;
             text-transform: uppercase;
             font-size: 0.85rem;
             letter-spacing: 0.05em;
+            text-shadow: 0 0 5px var(--neon-pink);
         }
         @media (max-width: 600px) {
             .performance-table {
@@ -123,7 +129,7 @@
             <div class="tab-content" id="golf">
                 <div class="card">
                     <h3>2013 MKVII Golf TSI</h3>
-                    <p>The ultimate daily driver. It perfectly captures the "hot hatch" essence, offering sharp turn-in and effortless power for city commutes or weekend blasts.</p>
+                    <p>The ultimate daily driver. It perfectly captures the \"hot hatch\" essence, offering sharp turn-in and effortless power for city commutes or weekend blasts.</p>
                     <strong class="build-label">Performance Stats:</strong>
                     <div class="table-container">
                         <table class="performance-table">
