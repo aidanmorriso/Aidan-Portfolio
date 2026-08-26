@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aidan Morrison | Gallery</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="gallery-page">
+    <header>
+        <nav>
+            <div class="logo">Aidan.</div>
+            <div class="nav-wrapper">
+                <button class="nav-toggle" aria-haspopup="true" aria-expanded="false">
+                    <span>Menu</span>
+                    <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9h12M6 15h12M12 3l9 9-9-9-9-9z"/></svg>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#experience">Experience</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="cars.html">Cars</a></li>
+                    <li class="has-submenu">
+                        <a href="javascript:void(0)" class="submenu-trigger">Art ▾</a>
+                        <ul class="sub-menu">
+                            <li><a href="music.html">Music</a></li>
+                            <li><a href="gallery.html" class="active">Gallery</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Gallery 📸</h1>
+                <p class="tagline">Moments in time.</p>
+            </div>
+        </section>
+
+        <section class="gallery-grid">
+            <div class="gallery-item" data-lightbox="true">
+                <img src="gallery/gallery-1.png" alt="Project Moment 1">
+            </div>
+            <div class="gallery-item" data-lightbox="true">
+                <img src="gallery/gallery-2.png" alt="Project Moment 2">
+            </div>
+            <div class="gallery-item" data-lightbox="true">
+                <img src="gallery/gallery-3.png" alt="Project Moment 3">
+            </div>
+            <div class="gallery-item" data-lightbox="true">
+                <img src="gallery/gallery-4.png" alt="Project Moment 4">
+            </div>
+            <div class="gallery-item" data-lightbox="true">
+                <img src="gallery/gallery-5.png" alt="Project Moment 5">
+            </div>
+        </section>
+    </main>
+
+    <footer class="gallery-footer">
+        <p>&copy; 2026 Aidan Morrison. All rights reserved.</p>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="gallery-lightbox" class="lightbox" aria-hidden="true">
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+            <div class="lightbox-controls">
+                <button class="lightbox-prev" aria-label="Previous image">&lt;</button>
+                <button class="lightbox-next" aria-label="Next image">&gt;</button>
+                <button id="lightbox-fullscreen" aria-label="Toggle Fullscreen">&u2194;</button>
+            </div>
+        <button class="lightbox-close" aria-label="Close">&times;</button>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
