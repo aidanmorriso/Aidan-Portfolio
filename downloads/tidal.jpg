@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><title>aidanmorriso on TIDAL</title><meta name="description" content="See the releases of aidanmorriso on TIDAL"><meta property="og:type" content="profile"><meta property="og:title" content="aidanmorriso"><meta property="og:description" content="See the releases of aidanmorriso on TIDAL"><meta property="og:image" content="https://resources.tidal.com/images/1634cee5/a6ef/4343/9e75/cf0952e491b3/640x640.jpg">
+    <meta property="og:image:height" content="640">
+    <meta property="og:image:width" content="640"><meta property="og:url" content="https://tidal.com/artist/66878593"><meta name="al:ios:app_store_id" content="913943275"><meta name="al:ios:app_name" content="TIDAL"><meta name="al:ios:url" content="tidal://artist/66878593"><meta name="al:android:package" content="com.aspiro.tidal"><meta name="al:android:app_name" content="TIDAL"><meta name="al:android:url" content="tidal://artist/66878593">
+    <script type="module" crossorigin src="/assets/polyfills-6IYD1ggq.js"></script>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="preconnect" href="//resources.tidal.com" />
+
+
+    <link
+      rel="search"
+      type="application/opensearchdescription+xml"
+      href="https://tidal.com/open-search.xml"
+      title="TIDAL search"
+    />
+
+    <link rel="stylesheet" href="https://square-fonts-production-f.squarecdn.com/square-sans.css">
+
+    <meta name="apple-mobile-web-app-title" content="TIDAL" />
+    <meta name="application-name" content="TIDAL" />
+    <meta name="apple-itunes-app" content="app-id=913943275,app-argument=/" />
+
+    <meta property="fb:app_id" content="185717988231456" />
+    <meta name="twitter:site" content="@tidal" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:site_name" content="Music on TIDAL" />
+    <meta name="robots" content="noai, noimageai" />
+
+    <style id="antiClickjack">
+      body {
+        display: none !important;
+      }
+    </style>
+    <script type="text/javascript">
+      (function() {
+        if (self === top) {
+          var antiClickjack = document.getElementById('antiClickjack');
+          antiClickjack.parentNode.removeChild(antiClickjack);
+        } else {
+          top.location = self.location;
+        }
+      })();
+    </script>
+
+    <!-- For pinned tab in Safari 9 -->
+    <!-- TODO: support folder deploy? (path relative to app root) -->
+    <link rel="mask-icon" href="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20239.5%20159.7'%20id='tidal-diamond'%3e%3cpath%20d='M159.67%2039.938l-39.88%2039.88-39.88-39.88%2039.88-39.88zM159.669%20119.756l-39.88%2039.88-39.88-39.88%2039.88-39.88zM79.809%2039.912l-39.88%2039.88-39.88-39.88%2039.88-39.88zM239.505%2039.93l-39.88%2039.88-39.88-39.88%2039.88-39.88z'/%3e%3c/svg%3e" />
+    <meta name="theme-color" content="#000000" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <script>
+      window.TIDAL_CONFIG = {};
+
+      if (
+        window.cypressDesktop ||
+        /TIDAL/.test(navigator.userAgent)
+      ) {
+        window.TIDAL_CONFIG.enableDesktopFeatures = true;
+      } else {
+        window.TIDAL_CONFIG.enableDesktopFeatures = false;
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "WebApplication",
+        "name": "TIDAL",
+        "applicationCategory": "Music",
+        "applicationSubCategory": "Streaming",
+        "downloadUrl": "https://tidal.com/download",
+        "thumbnailUrl": "https://tidal.com/img/tidal_square_logo.png",
+        "browserRequirements": "Modern, HTML 5",
+        "operatingSystem": "Linux, macOS, Windows"
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-DnBBD1pK.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/react-CXLoTpP3.js">
+    <link rel="modulepreload" crossorigin href="/assets/preload-helper-zJ_50EbN.js">
+    <link rel="modulepreload" crossorigin href="/assets/fast-memoize-tJqGINKI.js">
+    <link rel="modulepreload" crossorigin href="/assets/intl-localematcher-CkuBlMUM.js">
+    <link rel="modulepreload" crossorigin href="/assets/en-DJIcJCdI.js">
+    <link rel="modulepreload" crossorigin href="/assets/selectors-Bk87Y_fP.js">
+    <link rel="modulepreload" crossorigin href="/assets/api.generated-5d1J6hDw.js">
+    <link rel="modulepreload" crossorigin href="/assets/selectors-B2ZRDPiv.js">
+    <link rel="modulepreload" crossorigin href="/assets/react-dom-C54PbMuF.js">
+    <link rel="modulepreload" crossorigin href="/assets/jsonApiIncluded-Cc7iCLu8.js">
+    <link rel="modulepreload" crossorigin href="/assets/Transition-U_uFML-1.js">
+    <link rel="modulepreload" crossorigin href="/assets/tslib.es6-CGB2Yepd.js">
+    <link rel="modulepreload" crossorigin href="/assets/es2015-B4U7dO4_.js">
+    <link rel="modulepreload" crossorigin href="/assets/telemetrySessionContext-nzSpvLpt.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-CIBkG_DG.js">
+    <link rel="modulepreload" crossorigin href="/assets/esm-Cc9hg4NJ.js">
+    <link rel="modulepreload" crossorigin href="/assets/replayStats-C6TwcZID.js">
+    <link rel="modulepreload" crossorigin href="/assets/state-B3oYHY5K.js">
+    <link rel="modulepreload" crossorigin href="/assets/customer-data-events-web-bx0OD2_r.js">
+    <link rel="modulepreload" crossorigin href="/assets/globalStore-COaekD3-.js">
+    <link rel="modulepreload" crossorigin href="/assets/event-tracking-DbNYubSL.js">
+    <link rel="modulepreload" crossorigin href="/assets/imageFallback-_sR8Ak78.js">
+    <link rel="modulepreload" crossorigin href="/assets/common-DrG8_xcp.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-DGyhHwuQ.js">
+    <link rel="modulepreload" crossorigin href="/assets/sessionApi-D-Nhv2TH.js">
+    <link rel="modulepreload" crossorigin href="/assets/tidalApi-C_qsNtv9.js">
+    <link rel="modulepreload" crossorigin href="/assets/userJourneyTrackerInstance-BNhOI84E.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-z3BJKez2.js">
+    <link rel="modulepreload" crossorigin href="/assets/api.generated-z0gk8Gaa.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-CbWmrTWn.js">
+    <link rel="modulepreload" crossorigin href="/assets/api-LsQ-dpdL.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-DZzeLtNG.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-B1H9QdLP.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-ZOn4x8cD2.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-B7e91HdC.js">
+    <link rel="modulepreload" crossorigin href="/assets/slice-C7sE4omg.js">
+    <link rel="modulepreload" crossorigin href="/assets/slice-QKGJ2yLH.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-qZLZt2n2.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-DfiMU2wa.js">
+    <link rel="modulepreload" crossorigin href="/assets/isLiveStream-Dg-IHDFK.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-zdhPw8ZD.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-JJH3Vnw0.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-BqBmLZse.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-DiiboazZ.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-BjmF_LqL.js">
+    <link rel="modulepreload" crossorigin href="/assets/state-DmU5EvGd.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-Ci1DW448.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-C2SqyBRq.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-C38gerqG.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-OZJC20Ng.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-DGmv_Ec8.js">
+    <link rel="modulepreload" crossorigin href="/assets/store-D4o3Cxz9.js">
+    <link rel="modulepreload" crossorigin href="/assets/clsx-CjueKrWZ.js">
+    <link rel="modulepreload" crossorigin href="/assets/product-analytics-CJVaHK3q.js">
+    <link rel="modulepreload" crossorigin href="/assets/jsx-runtime-9IR1n8WV.js">
+    <link rel="modulepreload" crossorigin href="/assets/src-pHPcOWKv.js">
+    <link rel="modulepreload" crossorigin href="/assets/contextMenuUtils-DNkXR_cy.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-BaXd5rd6.js">
+    <link rel="modulepreload" crossorigin href="/assets/index-PsWX3Tu1-DwW2DLMQ.js">
+    <link rel="modulepreload" crossorigin href="/assets/MarketButton-DXvIWnTi.js">
+    <link rel="modulepreload" crossorigin href="/assets/MarketLink-DTRaY27P.js">
+    <link rel="modulepreload" crossorigin href="/assets/MarketPopover-DTnlkjS3.js">
+    <link rel="modulepreload" crossorigin href="/assets/MarketDropdown-Brj8WTKc.js">
+    <link rel="modulepreload" crossorigin href="/assets/utils-Drvt6tPs.js">
+    <link rel="modulepreload" crossorigin href="/assets/hooks-DIHrNEC6.js">
+    <link rel="modulepreload" crossorigin href="/assets/localSvg-Bu8x4317.js">
+    <link rel="modulepreload" crossorigin href="/assets/icons-DRh8b284.js">
+    <link rel="modulepreload" crossorigin href="/assets/MarketText-BsIqlA_J.js">
+    <link rel="modulepreload" crossorigin href="/assets/debounce-MjWJAxiu.js">
+    <link rel="modulepreload" crossorigin href="/assets/icon-DnsDzH6U.js">
+    <link rel="modulepreload" crossorigin href="/assets/selectors-Csrj6fDM.js">
+    <link rel="modulepreload" crossorigin href="/assets/components-BqCxO28p.js">
+    <link rel="modulepreload" crossorigin href="/assets/lib-RLQ25ZcP.js">
+    <link rel="modulepreload" crossorigin href="/assets/purchased-CKSW8gsI.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-Cg8kmqIH.js">
+    <link rel="modulepreload" crossorigin href="/assets/MarketTooltip-jLW79srX.js">
+    <link rel="modulepreload" crossorigin href="/assets/useIsAiItemRestricted-D9CMW0L0.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-vPfKNp9p.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-BcwaSFEk.js">
+    <link rel="modulepreload" crossorigin href="/assets/resourceImage-CqBEDi58.js">
+    <link rel="modulepreload" crossorigin href="/assets/radioMixImage-9EDxsX3H.js">
+    <link rel="modulepreload" crossorigin href="/assets/useUserJourney-BI3sJS-g.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-KL15F5oC.js">
+    <link rel="modulepreload" crossorigin href="/assets/api-DfCz1sgq.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-DqjPAXOY.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-DIIUQYvB.js">
+    <link rel="modulepreload" crossorigin href="/assets/useIsMobileViewport-BO0g1sWd.js">
+    <link rel="modulepreload" crossorigin href="/assets/useResizeObserver-BaXMeWuB.js">
+    <link rel="modulepreload" crossorigin href="/assets/selectors-Bxc0A8kD.js">
+    <link rel="modulepreload" crossorigin href="/assets/styles.module-D49Uf5h3.js">
+    <link rel="modulepreload" crossorigin href="/assets/waveText-Dfea7YIF.js">
+    <link rel="modulepreload" crossorigin href="/assets/claimArtistRedirectUri-CPgEuIV-.js">
+    <link rel="modulepreload" crossorigin href="/assets/utils-l1n8z96y.js">
+    <link rel="modulepreload" crossorigin href="/assets/MarketButtonGroup-DcUlcHa0.js">
+    <link rel="modulepreload" crossorigin href="/assets/constants-CT6rltXM.js">
+    <link rel="modulepreload" crossorigin href="/assets/MarketSkeletonLoader-Cw4MqsMG.js">
+    <link rel="modulepreload" crossorigin href="/assets/nb-HaRROHh-.js">
+    <link rel="modulepreload" crossorigin href="/assets/selectors-CSIpx_Qh.js">
+    <link rel="modulepreload" crossorigin href="/assets/selectors-B_QB5vIB.js">
+    <link rel="modulepreload" crossorigin href="/assets/mediaItemsState-qILpCIzk.js">
+    <link rel="modulepreload" crossorigin href="/assets/active-device-changed-BDbOSq7P-BhnJYPYi.js">
+    <link rel="modulepreload" crossorigin href="/assets/active-device-mode-changed-OmLVES_4-HokXyxSl.js">
+    <link rel="modulepreload" crossorigin href="/assets/audio-context-store-Bf50rcqa-BmY5WG_b.js">
+    <link rel="modulepreload" crossorigin href="/assets/generate-guid-C7EoYu64-By2v9ZFa.js">
+    <link rel="modulepreload" crossorigin href="/assets/state-BujoNwcN-BX37F7Lj.js">
+    <link rel="modulepreload" crossorigin href="/assets/pushkin-C5TU0Pwc-Cyl9uOlD.js">
+    <link rel="modulepreload" crossorigin href="/assets/load-uTL4eiru-BOQ4slVv.js">
+    <link rel="modulepreload" crossorigin href="/assets/prop-types-ByOBHWAQ.js">
+    <link rel="modulepreload" crossorigin href="/assets/typography.css_.module-2Axs1ryd.js">
+    <link rel="modulepreload" crossorigin href="/assets/modal-DzmSfFhw.js">
+    <link rel="modulepreload" crossorigin href="/assets/constants-Bm2QtBon.js">
+    <link rel="modulepreload" crossorigin href="/assets/errorHandlers-BApqfemA.js">
+    <link rel="modulepreload" crossorigin href="/assets/getConnectionFailureMetadata-BRPLriVU.js">
+    <link rel="modulepreload" crossorigin href="/assets/styles.module-MJ5B99n3.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-DG9LRDXC.js">
+    <link rel="modulepreload" crossorigin href="/assets/selectors-CslQzo_k.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-BOtnD39T.js">
+    <link rel="modulepreload" crossorigin href="/assets/useAlbumDownload-C3f65h0Z.js">
+    <link rel="modulepreload" crossorigin href="/assets/storage-BDcAbVuc.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-B4Juz9UA.js">
+    <link rel="modulepreload" crossorigin href="/assets/useDragLayer-BR01k8Zn.js">
+    <link rel="modulepreload" crossorigin href="/assets/useDrop-N-habK6x.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-Bwaz3p86.js">
+    <link rel="modulepreload" crossorigin href="/assets/url-Dim3J2MF.js">
+    <link rel="modulepreload" crossorigin href="/assets/stripe-BosBbcen.js">
+    <link rel="modulepreload" crossorigin href="/assets/square-DXmA5Hmx.js">
+    <link rel="modulepreload" crossorigin href="/assets/replaceAnnotationsWithLinks-Duov7eYs.js">
+    <link rel="modulepreload" crossorigin href="/assets/serviceWorkerHelpers-pje20sNX.js">
+    <link rel="modulepreload" crossorigin href="/assets/upload-cover-BPtvzR1r.js">
+    <link rel="modulepreload" crossorigin href="/assets/api.generated-BAE0a3Ik.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-DxSMXDz3.js">
+    <link rel="modulepreload" crossorigin href="/assets/link-Bit2n-6O.js">
+    <link rel="modulepreload" crossorigin href="/assets/artistLinkList-CXOIhTSj.js">
+    <link rel="modulepreload" crossorigin href="/assets/componentHelpers-Bw1n0M4O.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-CF4XZO4Z.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-D58nU8IC.js">
+    <link rel="modulepreload" crossorigin href="/assets/creatorContent-O_QHPe93.js">
+    <link rel="modulepreload" crossorigin href="/assets/image-DfZCVs0F.js">
+    <link rel="modulepreload" crossorigin href="/assets/useIsAlbumPurchased-D9E1T_cd.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-CBj-pGYE.js">
+    <link rel="modulepreload" crossorigin href="/assets/usePlurals-SxA2mkEF.js">
+    <link rel="modulepreload" crossorigin href="/assets/supplantReact-D2tHmWVX.js">
+    <link rel="modulepreload" crossorigin href="/assets/container-C00UvamG.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-BOZvCGtb.js">
+    <link rel="modulepreload" crossorigin href="/assets/claimStatusRouting-DiYEyx2d.js">
+    <link rel="modulepreload" crossorigin href="/assets/sort-CxTvcAD0.js">
+    <link rel="modulepreload" crossorigin href="/assets/hostedCheckoutReturn-C20olJuF.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-Fyaw00pV.js">
+    <link rel="modulepreload" crossorigin href="/assets/utils-RikecIzJ.js">
+    <link rel="modulepreload" crossorigin href="/assets/pageNotFoundError-BY5TS8ob.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-CgzC4lwE.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-re1EVH5l.js">
+    <link rel="modulepreload" crossorigin href="/assets/cell-DtCUv-gj.js">
+    <link rel="modulepreload" crossorigin href="/assets/loadingOverlay-BJHdNAOl.js">
+    <link rel="modulepreload" crossorigin href="/assets/queryArgs-BDqb2ndQ.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-Sbit25iy.js">
+    <link rel="modulepreload" crossorigin href="/assets/analyticsMapping--Nc2wq4F.js">
+    <link rel="modulepreload" crossorigin href="/assets/getTranslationWithPluralFallback-mwA7KO_G.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-kf8mPJk5.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-C3veGmYk2.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-DuMuOA0m.js">
+    <link rel="modulepreload" crossorigin href="/assets/roundedButton-Dadu_X_q.js">
+    <link rel="modulepreload" crossorigin href="/assets/searchField-Cdg6XVgP.js">
+    <link rel="modulepreload" crossorigin href="/assets/selectors-BOFVncv3.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-BDMXUioS.js">
+    <link rel="modulepreload" crossorigin href="/assets/component-Nk4Dseh0.js">
+    <link rel="modulepreload" crossorigin href="/assets/useAccountRedirect-8gFy7ekw.js">
+    <link rel="modulepreload" crossorigin href="/assets/api-DKayUzOG.js">
+    <link rel="modulepreload" crossorigin href="/assets/useInitTransferMusic-BUvXzDUL.js">
+    <link rel="modulepreload" crossorigin href="/assets/range-DLN4Dw_F.js">
+    <link rel="modulepreload" crossorigin href="/assets/useMultiSelect-JOK4BYN0.js">
+    <link rel="modulepreload" crossorigin href="/assets/formatNumber-Dby7fES-.js">
+    <link rel="modulepreload" crossorigin href="/assets/useScrollRestore-Gt--zGih.js">
+    <link rel="modulepreload" crossorigin href="/assets/useSendContribution-CKSeA7_7.js">
+    <link rel="modulepreload" crossorigin href="/assets/profilerCallBack-DtRu6WmH.js">
+    <link rel="modulepreload" crossorigin href="/assets/fullDynamicPageName-Cod_p8GS.js">
+    <link rel="modulepreload" crossorigin href="/assets/diff-B9hAcpt3.js">
+    <link rel="modulepreload" crossorigin href="/assets/selectors-CGa8hesc.js">
+    <link rel="modulepreload" crossorigin href="/assets/selectors-CAzvFRCj.js">
+    <link rel="modulepreload" crossorigin href="/assets/selectors-CLKO4eVX.js">
+    <link rel="modulepreload" crossorigin href="/assets/selectors-BSz82Kns.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-DcZ66EjM.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-Bk4JsZFX.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-CXFLw_E8.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-CMtf7XO7.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-Cscv4RJZ.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-BdWrXFy4.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-B9klL-sU.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-0Ykr9cRK.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-DLq6u5dC.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-DQg8d734.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-G7thuLUM.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-C4o6fQ3I.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-D39aKp-i.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-CY6h1iM2.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-Bg-hKJih.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-CF_3iNhe.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-BwZKZukS.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-C9BUqrKF.js">
+    <link rel="modulepreload" crossorigin href="/assets/actions-PN5Vh6c7.js">
+    <link rel="modulepreload" crossorigin href="/assets/api-LVMXxUtP.js">
+    <link rel="modulepreload" crossorigin href="/assets/copyToClipboard-DtwZl0lu.js">
+    <link rel="modulepreload" crossorigin href="/assets/getAlbumTypeLabel-idpXtdcG.js">
+    <link rel="modulepreload" crossorigin href="/assets/getSearchParams-DNE4_Dnq.js">
+    <link rel="modulepreload" crossorigin href="/assets/inviteCode--J7LYgw2.js">
+    <link rel="modulepreload" crossorigin href="/assets/replaceAnnotationsWithComponents-BFu97r0s.js">
+    <link rel="stylesheet" crossorigin href="/assets/src-CujEHiKB.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-PsWX3Tu1-BGy9puWi.css">
+    <link rel="stylesheet" crossorigin href="/assets/MarketButton-DZZVAV4C.css">
+    <link rel="stylesheet" crossorigin href="/assets/MarketLink-DKWD31F0.css">
+    <link rel="stylesheet" crossorigin href="/assets/MarketDropdown-TygRs5Mu.css">
+    <link rel="stylesheet" crossorigin href="/assets/icons-ZooI7B9G.css">
+    <link rel="stylesheet" crossorigin href="/assets/MarketText-Ck4oFFbI.css">
+    <link rel="stylesheet" crossorigin href="/assets/icon-6cvCUj7W.css">
+    <link rel="stylesheet" crossorigin href="/assets/selectors-B42Neuhd.css">
+    <link rel="stylesheet" crossorigin href="/assets/component-C9qmvLyl.css">
+    <link rel="stylesheet" crossorigin href="/assets/MarketTooltip-DkhsEuiv.css">
+    <link rel="stylesheet" crossorigin href="/assets/useIsAiItemRestricted-BKw1lAcj.css">
+    <link rel="stylesheet" crossorigin href="/assets/component-8KpX2nt9.css">
+    <link rel="stylesheet" crossorigin href="/assets/resourceImage-Dxsi7vzh.css">
+    <link rel="stylesheet" crossorigin href="/assets/component-ksHllqAy.css">
+    <link rel="stylesheet" crossorigin href="/assets/component-2_z6cUxM.css">
+    <link rel="stylesheet" crossorigin href="/assets/styles-DsKxtryX.css">
+    <link rel="stylesheet" crossorigin href="/assets/utils--lB5ZMsj.css">
+    <link rel="stylesheet" crossorigin href="/assets/MarketButtonGroup-Cyw65cfm.css">
+    <link rel="stylesheet" crossorigin href="/assets/constants-DWrruSyk.css">
+    <link rel="stylesheet" crossorigin href="/assets/MarketSkeletonLoader-Br2desio.css">
+    <link rel="stylesheet" crossorigin href="/assets/typography.css_-BpJsYeaZ.css">
+    <link rel="stylesheet" crossorigin href="/assets/modal-DxWyajxr.css">
+    <link rel="stylesheet" crossorigin href="/assets/styles-C3G0HCa1.css">
+    <link rel="stylesheet" crossorigin href="/assets/component-Dr55mBOc.css">
+    <link rel="stylesheet" crossorigin href="/assets/actions-CfVRwUXD.css">
+    <link rel="stylesheet" crossorigin href="/assets/component-DpFDaPWs.css">
+    <link rel="stylesheet" crossorigin href="/assets/serviceWorkerHelpers-YI0tDbSn.css">
+    <link rel="stylesheet" crossorigin href="/assets/component-Do-0vsha.css">
+    <link rel="stylesheet" crossorigin href="/assets/link-BVpET_v3.css">
+    <link rel="stylesheet" crossorigin href="/assets/artistLinkList-tbj7HGzj.css">
+    <link rel="stylesheet" crossorigin href="/assets/component-D6QRaxW1.css">
+    <link rel="stylesheet" crossorigin href="/assets/component-DtQ0fx-o.css">
+    <link rel="stylesheet" crossorigin href="/assets/image-8BpZ0qyn.css">
+    <link rel="stylesheet" crossorigin href="/assets/component-CSr6n-Lr.css">
+    <link rel="stylesheet" crossorigin href="/assets/container-CYCynztp.css">
+    <link rel="stylesheet" crossorigin href="/assets/component-Di0nBeH1.css">
+    <link rel="stylesheet" crossorigin href="/assets/component-BHfdYhe5.css">
+    <link rel="stylesheet" crossorigin href="/assets/pageNotFoundError-BBftdLN_.css">
+    <link rel="stylesheet" crossorigin href="/assets/cell-DdAsexTb.css">
+    <link rel="stylesheet" crossorigin href="/assets/loadingOverlay-BJZX2k92.css">
+    <link rel="stylesheet" crossorigin href="/assets/actions-BBw4MTWL.css">
+    <link rel="stylesheet" crossorigin href="/assets/component-6g1akzyl.css">
+    <link rel="stylesheet" crossorigin href="/assets/component-NbJSnh1g.css">
+    <link rel="stylesheet" crossorigin href="/assets/roundedButton-BtH120wF.css">
+    <link rel="stylesheet" crossorigin href="/assets/searchField-GHyMIhxH.css">
+    <link rel="stylesheet" crossorigin href="/assets/component-yTkpHG3c.css">
+    <link rel="stylesheet" crossorigin href="/assets/component-DC6RPuGU.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-B444jUWM.css">
+    <meta http-equiv="Content-Security-Policy" content="base-uri 'self'; object-src 'none'; script-src 'unsafe-inline' 'self' 'wasm-unsafe-eval' *.gstatic.com *.stripe.com *.tidal.com *.cookielaw.org blob:; style-src 'unsafe-inline' 'self' *.gstatic.com *.tidal.com *.cookielaw.org *.squarecdn.com sha256-0hAheEzaMe6uXIKV4EehS9pu1am1lj/KnnzrOYqckXk=; font-src data: *.squarecdn.com;" />
+<link rel="manifest" href="/manifest.json"></head>
+
+  <body data-focusable>
+<div id="fb-root"></div>
+    <script>
+      if (!window.TIDAL_CONFIG.enableDesktopFeatures) {
+        !function (a, b, c, d, e, f) {
+          a.ddjskey = e;
+          a.ddoptions = f || null;
+          var m = b.createElement(c),
+            n = b.getElementsByTagName(c)[0];
+          m.async = 1,
+          m.src = d,
+          n.parentNode.insertBefore(m, n)
+        }(
+          window,
+          document,
+          "script",
+          "https://dd.tidal.com/tags.js",
+          "1F633CDD8EF22541BD6D9B1B8EF13A",
+          { endpoint: 'https://dd.tidal.com/js/', ajaxListenerPath: 'tidal', overrideAbortFetch: true }
+        );
+      }
+    </script>
+    <div
+      id="wimp"
+      class="l-height-full l-width-page"
+      data-version="2026.08.26-492f93e3195dd1fc86b37a11a3482b003d9194ec"
+      >
+      <!-- App loading spinner: SVG TIDAL logo is intentionally inlined (not an
+           external file) so it renders instantly without an extra network request.
+           Kept visually distinct from the in-app DiamondLogo loading indicator so
+           the handoff feels intentional. React's createRoot replaces this on mount. -->
+      <div id="app-loader" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#000">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="#fff" style="animation:tidal-pulse 2s ease-in-out infinite">
+          <path fill-rule="evenodd" d="M4 4 0 8l4 4 4-4zm4 4.003 4-4 4 4 4-4 4 4-4 4-4-4-4 4L16 16l-4 4-4.001-4 4-4z"/>
+        </svg>
+        <style>
+          @keyframes tidal-pulse{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+        </style>
+      </div>
+    </div>
+  </body>
+</html>

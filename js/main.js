@@ -2,6 +2,48 @@ document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
     
+    // --- System Boot-up Sequence ---
+    const bootSequence = [
+        "INITIALIZING_SYSTEM_CORE...",
+        "LOADING_NEURAL_NETWORKS...",
+        "ESTABLISHING_CYBER_LINK...",
+        "DECRYPTING_PORTFOLIO_DATA...",
+        "ACCESS_GRANTED.",
+        "WELCOME, USER."
+    ];
+    
+    const bootOverlay = document.createElement('div');
+    bootOverlay.style.cssText = `
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: #0a0a0a;
+        color: #00ffff;
+        font-family: 'Courier New', Courier, monospace;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        padding: 20px;
+        text-align: center;
+    `;
+    document.body.appendChild(bootOverlay);
+
+    let step = 0;
+    const interval = setInterval(() => {
+        if (step < bootSequence.length) {
+            bootOverlay.innerHTML = `<span>> ${bootSequence[step]}</span>`;
+            step++;
+        } else {
+            clearInterval(interval);
+            setTimeout(() => {
+                bootOverlay.style.opacity = '0';
+                bootOverlay.style.transition = 'opacity 1s ease';
+                setTimeout(() => bootOverlay.remove(), 1000);
+            }, 500);
+        }
+    }, 800);
+
     // Toggle Main Dropdown
     if (navToggle) {
         navToggle.addEventListener('click', (e) => {
@@ -20,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             const parent = trigger.closest('.has-submenu');
             if (parent) {
-                // Toggle active class on the container to show/hide the sub-menu
                 parent.classList.toggle('active');
             }
         });
