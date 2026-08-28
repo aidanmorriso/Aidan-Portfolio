@@ -23,14 +23,19 @@ body {
     font-family: var(--font-mono);
     line-height: 1.6;
     color: var(--text-primary);
-    /* New Wallpaper */
-    background-image: url('../gallery/wellington_port_night.jpg');
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     background-color: var(--bg-color);
     overflow-x: hidden;
+}
+
+.video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
 }
 
 /* --- ANIMATIONS --- */
@@ -410,10 +415,21 @@ nav {
     max-width: 1000px;
     margin: 4rem auto;
     padding: 0 2rem;
-    border: 1px solid var(--border-color);
+    border: 2px solid var(--border-color);
     animation: border-glow 10s infinite;
     background: rgba(10, 10, 10, 0.8);
     backdrop-filter: blur(5px);
+    position: relative;
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border: 2px solid var(--neon-cyan);
+    opacity: 0.5;
+    animation: border-glow 8s infinite;
+    pointer-events: none;
 }
 
 .section h2 {

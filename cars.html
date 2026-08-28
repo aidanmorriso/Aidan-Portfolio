@@ -5,56 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aidan Morrison | Garage</title>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* Specific overrides for the Garage page to maintain the terminal feel */
-        .table-container {
-            width: 100%;
-            overflow-x: auto;
-            margin-top: 1.5rem;
-            border: 1px solid var(--border-color);
-            border-radius: 0; /* Sharp corners for cyberpunk */
-            -webkit-overflow-scrolling: touch;
-        }
-        .performance-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--surface-color);
-            min-width: 450px;
-        }
-        .performance-table th, .performance-table td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .performance-table th {
-            background-color: var(--bg-color);
-            font-weight: 700;
-            border-bottom: 2px solid var(--neon-cyan);
-            color: var(--neon-cyan);
-        }
-        .performance-table td {
-            color: var(--text-primary);
-        }
-        .build-label {
-            color: var(--neon-pink);
-            display: block;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
-            text-shadow: 0 0 5px var(--neon-pink);
-        }
-        @media (max-width: 600px) {
-            .performance-table {
-                font-size: 0.9rem;
-            }
-            .performance-table th, .performance-table td {
-                padding: 8px;
-            }
-        }
-    </style>
 </head>
 <body class="bg-bg-bg">
+    <video class="video-bg" autoplay muted loop playsinline poster="gallery/wellington_port_night.jpg">
+        <source src="gallery/please_make_it_loopable.mp4" type="video/mp4">
+    </video>
     <header>
         <nav>
             <div class="logo">Aidan.</div>
@@ -83,135 +38,17 @@
         </nav>
     </header>
 
-    <main style="position: relative; z-index: 10;">
-        <section class="section">
-            <h2>The Garage</h2>
-            <p>A collection of machines, from daily drivers to high-performance builds. Each car reflects a different side of my passion for engineering and mechanical craftsmanship.</p>
-            
-            <!-- Tab Navigation -->
-            <div class="tab-container">
-                <div class="tab-nav">
-                    <button class="tab-btn active" data-target="mazda">Mazda 6</button>
-                    <button class="tab-btn" data-target="golf">Golf TSI</button>
-                    <button class="tab-btn" data-target="prius">Prius Alpha</button>
-                    <button class="tab-btn" data-target="350z">350z</button>
+    <main>
+        <section id="cars" class="section">
+            <div class="message-block">
+                <div class="message-header">
+                    <div class="sender">From: Aidan Morrison</div>
+                    <div class="receiver">To: Automotive Enthusiasts</div>
                 </div>
-            </div>
-
-            <!-- Tab Content -->
-            <div class="tab-content active" id="mazda">
-                <div class="card">
-                    <h3>2007 Mazda 6 GSX Wagon</h3>
-                    <p>A masterclass in balance. This GSX wagon offers a refined 6-speed manual experience, providing enough torque to move its versatile cargo space while maintaining a stable, planted feel on the highway.</p>
-                    <strong class="build-label">Performance Stats:</strong>
-                    <div class="table-container">
-                        <table class="performance-table">
-                            <thead>
-                                <tr>
-                                    <th>0-100km/h</th>
-                                    <th>Top Speed</th>
-                                    <th>Weight</th>
-                                    <th>Power</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>~7.5s</td>
-                                    <td>~213 km/h</td>
-                                    <td>~1,600kg</td>
-                                    <td>~200hp</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <p><small>Key Features: 6-Speed Manual, Wagon Utility, Balanced Handling</small></p>
-                </div>
-            </div>
-            <div class="tab-content" id="golf">
-                <div class="card">
-                    <h3>2013 MKVII Golf TSI</h3>
-                    <p>The ultimate daily driver. It perfectly captures the \"hot hatch\" essence, offering sharp turn-in and effortless power for city commutes or weekend blasts.</p>
-                    <strong class="build-label">Performance Stats:</strong>
-                    <div class="table-container">
-                        <table class="performance-table">
-                            <thead>
-                                <tr>
-                                    <th>0-100km/h</th>
-                                    <th>Top Speed</th>
-                                    <th>Weight</th>
-                                    <th>Power</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>~6.2s</td>
-                                    <td>~233 km/h</td>
-                                    <td>~1,400kg</td>
-                                    <td>~220hp</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <p><small>Key Features: 6-Speed Manual, TSI Turbo, Compact Agility</small></p>
-                </div>
-            </div>
-            <div class="tab-content" id="prius">
-                <div class="card">
-                    <h3>2012 Prius Alpha G Touring</h3>
-                    <p>The ultimate hybrid for efficiency, comfort, and long-distance cruising. While it started as an eco-warrior, it has been transformed into a high-voltage powerhouse.</p>
-                    <strong class="build-label">Performance Upgrades:</strong>
-                    <ul>
-                        <li>Power: 400hp via Open-Source ECU & IGBT setup</li>
-                        <li>Cooling: Performance radiator, high-flow fans, and custom sprayers</li>
-                    </ul>
-                    <div class="table-container">
-                        <table class="performance-table">
-                            <thead>
-                                <tr>
-                                    <th>0-100km/h</th>
-                                    <th>Top Speed</th>
-                                    <th>Weight</th>
-                                    <th>Power</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>~5.8s</td>
-                                    <td>~210 km/h</td>
-                                    <td>~1,550kg</td>
-                                    <td>400hp</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-content" id="350z">
-                <div class="card">
-                    <h3>2013 Nissan 350z</h3>
-                    <p>A raw, visceral machine. This 350z is built for the track and the street alike, featuring a twin-turbo setup and a heavy-duty W-Puck clutch for seamless power delivery.</p>
-                    <strong class="build-label">Build Specs:</strong>
-                    <p>Aftermarket twin turbo, Limited Slip Differential (LSD), and a 6-speed manual with a W-Puck clutch.</p>
-                    <div class="table-container">
-                        <table class="performance-table">
-                            <thead>
-                                <tr>
-                                    <th>0-100km/h</th>
-                                    <th>Top Speed</th>
-                                    <th>Weight</th>
-                                    <th>Power</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>~4.2s</td>
-                                    <td>~270+ km/h</td>
-                                    <td>~1,500kg</td>
-                                    <td>~500+hp</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="message-body">
+                    <h2 class="message-title">Subject: My Garage & Machines</h2>
+                    <p>I'm a firm believer that if you can't build it yourself, you don't truly understand how it works. My collection isn't just about the speed; it's about the engineering, the maintenance, and the constant pursuit of perfecting the drive. From classic restorations to modern performance builds, every machine in my garage tells a story of grease, sweat, and technical precision.</p>
+                    <p>Whether I'm tuning a carburetor or diagnostic-testing a modern ECU, the goal is the same: peak performance through meticulous attention to detail. Welcome to my garage.</p>
                 </div>
             </div>
         </section>
