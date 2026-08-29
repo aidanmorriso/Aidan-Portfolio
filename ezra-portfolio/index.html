@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersigil Cross - Three.js</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #050505; /* Deep cyber dark background */
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Import Three.js as an ES module -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+
+        // 1. Scene Setup
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x050505, 0.05);
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 8;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.body.appendChild(renderer.domElement);
+
+        // 2. Materials (Cybersigil Aesthetic: Dark metal + Neon Wireframe)
+        const neonColor = 0xff003c; // Cyberpunk red/magenta (change to 0x00ffcc for cyan)
+        
+        const solidMaterial = new THREE.MeshStandardMaterial({
+            color: 0x111111,
+            metalness: 0.9,
+            roughness: 0.2,
+            flatShading: true // Gives it a sharp, low-poly/edgy look
+        });
+
+        const wireframeMaterial = new THREE.LineBasicMaterial({
+            color: neonColor,
+            linewidth: 2,
+            transparent: true,
+            opacity: 0.8
+        });
+
+        // 3. Build the Geometry Group
+        const crossGroup = new THREE.Group();
+
+        // Helper function to create sharp, sigil-like parts
+        function createPart(geometry) {
+            const mesh = new THREE.Mesh(geometry, solidMaterial);
+            const edges = new THREE.EdgesGeometry(geometry);
+            const line = new THREE.LineSegments(edges, wireframeMaterial);
+            mesh.add(line);
+            return mesh;
+        }
+
+        // Main Beams (Thin and sharp)
+        const verticalBeam = createPart(new THREE.BoxGeometry(0.4, 5, 0.4));
+        const horizontalBeam = createPart(new THREE.BoxGeometry(3.5, 0.4, 0.4));
+        horizontalBeam.position.y = 0.5; // Move horizontal bar up slightly
+        crossGroup.add(verticalBeam, horizontalBeam);
+
+        // Central core (Sharp diamond/octahedron)
+        const core = createPart(new THREE.OctahedronGeometry(0.6, 0));
+        core.position.y = 0.5;
+        crossGroup.add(core);
+
+        // Add jagged "thorns" / sigil accents at the tips
+        const createSpike = (x, y, z, rotZ) => {
+            const spike = createPart(new THREE.ConeGeometry(0.3, 1.5, 4)); // 4-sided sharp cone
+            spike.position.set(x, y, z);
+            spike.rotation.z = rotZ;
+            return spike;
+        };
+
+        // Top spike
+        crossGroup.add(createSpike(0, 3, 0, 0));
+        // Bottom spike
+        crossGroup.add(createSpike(0, -3, 0, Math.PI));
+        // Left spike
+        crossGroup.add(createSpike(-2.2, 0.5, 0, Math.PI / 2));
+        // Right spike
+        crossGroup.add(createSpike(2.2, 0.5, 0, -Math.PI / 2));
+
+        // Add an orbiting, sharp tribal ring to complete the sigil look
+        const ringGeo = new THREE.TorusGeometry(2.5, 0.05, 4, 8); // Jagged, low-segment ring
+        const sigilRing = createPart(ringGeo);
+        sigilRing.rotation.x = Math.PI / 2;
+        crossGroup.add(sigilRing);
+
+        scene.add(crossGroup);
+
+        // 4. Lighting
+        const ambientLight = new THREE.AmbientLight(0x222222);
+        scene.add(ambientLight);
+
+        const pointLight1 = new THREE.PointLight(neonColor, 100, 20);
+        pointLight1.position.set(2, 3, 4);
+        scene.add(pointLight1);
+
+        const pointLight2 = new THREE.PointLight(0x00ffcc, 50, 20); // Secondary cyan light for contrast
+        pointLight2.position.set(-3, -3, -4);
+        scene.add(pointLight2);
+
+        // 5. Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotate the entire cross
+            crossGroup.rotation.y += 0.005;
+            crossGroup.rotation.x += 0.002;
+            crossGroup.rotation.z = Math.sin(Date.now() * 0.001) * 0.1; // Slight breathing sway
+
+            // Counter-rotate the floating sigil ring for a magical effect
+            sigilRing.rotation.z -= 0.01;
+
+            renderer.render(scene, camera);
+        }
+
+        // 6. Handle Window Resizing
+        window.addEventListener('resize', onWindowResize, false);
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
