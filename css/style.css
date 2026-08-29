@@ -7,7 +7,7 @@
     --neon-cyan: #00ffff;
     --border-color: #333333;
     --font-mono: 'Courier New', Courier, monospace;
-    --hero-bg: url('../gallery/gallery-2.png');
+    --hero-bg: url('../gallery/gallery-2_compressed.png');
     /* Animation Variables */
     --neon-glow: 0 0 10px rgba(0, 255, 255, 0.7);
     --glitch-speed: 0.3s;

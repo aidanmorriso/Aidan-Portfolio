@@ -27,6 +27,12 @@
                     <li><a href="cars.html">Cars</a></li>
                     <li><a href="connections.html">Connections</a></li>
                     <li class="has-submenu">
+                        <a href="javascript:void(0)" class="submenu-trigger">Opinions ▾</a>
+                        <ul class="sub-menu">
+                            <li><a href="anime.html">Anime</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
                         <a href="javascript:void(0)" class="submenu-trigger">Art ▾</a>
                         <ul class="sub-menu">
                             <li><a href="music.html">Music</a></li>
@@ -218,7 +224,7 @@
                         </div>
                         <div class="contact-item">
                             <h3>Location</h3>
-                            <p>30 Gloaming Hill, Titahi Bay</p>
+                            <p><span id="geo-location">Detecting...</span></p>
                             <a href="#" class="btn">View on Map</a>
                         </div>
                     </div>
@@ -232,5 +238,23 @@
     </footer>
 
     <script src="js/main.js"></script>
+<script>
+    (function() {
+        fetch('https://ipapi.co/json/')
+            .then(response => response.json())
+            .then(data => {
+                const geoSpan = document.getElementById('geo-location');
+                if (geoSpan) {
+                    const location = data.city ? `${data.city}, ${data.country_name}` : 'Unknown Location';
+                    geoSpan.innerText = location;
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching IP location:', error);
+                const geoSpan = document.getElementById('geo-location');
+                if (geoSpan) geoSpan.innerText = 'Location unavailable';
+            });
+    })();
+</script>
 </body>
 </html>
