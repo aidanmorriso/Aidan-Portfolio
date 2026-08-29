@@ -3,20 +3,351 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cybersigil Cross - Three.js</title>
+    <title>EZRA GILLON // $UICIDEBOY$ // '96 EG CIVIC</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Orbitron:wght@900&display=swap');
+
+        :root {
+            --neon-red: #ff003c;
+            --cyber-cyan: #00ffcc;
+            --g59-black: #080808;
+            --acid-green: #39ff14;
+        }
+
         body {
             margin: 0;
-            overflow: hidden;
-            background-color: #050505; /* Deep cyber dark background */
+            background-color: var(--g59-black);
+            color: #fff;
+            font-family: 'Share Tech Mono', monospace;
+            overflow-x: hidden;
         }
-        canvas {
+
+        /* Scanline CRT FX Overlay */
+        body::before {
+            content: " ";
             display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 999;
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
+        }
+
+        /* Background Media Grid Container */
+        #bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            z-index: 0;
+            opacity: 0.25;
+            filter: grayscale(30%) contrast(120%);
+            pointer-events: none;
+        }
+
+        .grid-item {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 1px solid rgba(255, 0, 60, 0.2);
+        }
+
+        /* Three.js Fixed Background Canvas */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Sections Scroll Engine - tighter spacing */
+        .section {
+            position: relative;
+            z-index: 10;
+            min-height: auto;
+            padding: 4rem 2rem 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            border-bottom: 1px dashed rgba(255, 0, 60, 0.3);
+        }
+
+        #hero {
+            min-height: 90vh;
+            text-align: center;
+            pointer-events: none;
+            border-bottom: none;
+            padding-bottom: 1rem;
+        }
+
+        #hero * {
+            pointer-events: auto;
+        }
+
+        .glitch-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            margin: 0;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 3px 0px var(--neon-red), -3px 0px var(--cyber-cyan);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { text-shadow: 3px 0px var(--neon-red), -3px 0px var(--cyber-cyan); }
+            20% { text-shadow: -3px 0px var(--neon-red), 3px 0px var(--cyber-cyan); }
+            40% { text-shadow: 2px 3px var(--neon-red), -2px -3px var(--cyber-cyan); }
+            60% { text-shadow: -2px -3px var(--neon-red), 2px 3px var(--cyber-cyan); }
+            80% { text-shadow: 3px -2px var(--neon-red), -3px 2px var(--cyber-cyan); }
+            100% { text-shadow: -3px 2px var(--neon-red), 3px -2px var(--cyber-cyan); }
+        }
+
+        .hero-tag {
+            font-family: 'VT323', monospace;
+            font-size: 1.8rem;
+            color: var(--cyber-cyan);
+            letter-spacing: 3px;
+            margin-top: 15px;
+            text-shadow: 0 0 10px var(--cyber-cyan);
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-tag a {
+            color: var(--cyber-cyan);
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .hero-tag a:hover {
+            color: #fff;
+            text-shadow: 0 0 15px #fff;
+        }
+
+        /* Content Hub & Cards */
+        .content-box {
+            background: rgba(10, 10, 10, 0.88);
+            border: 2px solid var(--neon-red);
+            box-shadow: 0 0 25px rgba(255, 0, 60, 0.25);
+            max-width: 900px;
+            width: 100%;
+            padding: 2.5rem;
+            box-sizing: border-box;
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        .content-box::before {
+            content: "[LOG // DATA_ENTRY]";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--g59-black);
+            padding: 0 10px;
+            color: var(--neon-red);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cyber-cyan);
+            font-size: 2.2rem;
+            margin-top: 0;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+            border-bottom: 1px solid rgba(0, 255, 204, 0.3);
+            padding-bottom: 10px;
+        }
+
+        p, ul {
+            font-size: 1.12rem;
+            line-height: 1.55;
+            color: #ddd;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border: 1px dashed rgba(0, 255, 204, 0.4);
+        }
+
+        .specs-grid div {
+            font-size: 0.95rem;
+            color: #bbb;
+        }
+
+        .specs-grid strong {
+            color: var(--cyber-cyan);
+        }
+
+        /* Links & Buttons */
+        .cyber-link {
+            color: var(--acid-green);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--acid-green);
+            transition: 0.2s;
+        }
+
+        .cyber-link:hover {
+            background: var(--acid-green);
+            color: #000;
+            box-shadow: 0 0 10px var(--acid-green);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cyber-btn {
+            background: transparent;
+            border: 1px solid var(--cyber-cyan);
+            color: var(--cyber-cyan);
+            padding: 10px 22px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 0 10px rgba(0, 255, 204, 0.2);
+        }
+
+        .cyber-btn:hover {
+            background: var(--cyber-cyan);
+            color: #000;
+            box-shadow: 0 0 20px var(--cyber-cyan);
+            transform: translateY(-2px);
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .media-slot {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border: 1px solid var(--neon-red);
+            filter: contrast(130%) grayscale(20%);
+        }
+
+        /* Responsive */
+        @media(max-width: 768px) {
+            .content-box { padding: 1.5rem; }
+            .media-grid { grid-template-columns: repeat(2, 1fr); }
+            .specs-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- Import Three.js as an ES module -->
+
+    <div id="bg-grid">
+        <img src="photo1.jpg" class="grid-item" alt="" onerror="this.style.display='none'">
+        <video src="video1.mp4" class="grid-item" autoplay loop muted onerror="this.style.display='none'"></video>
+        <img src="photo2.jpg" class="grid-item" alt="" onerror="this.style.display='none'">
+        <img src="photo3.jpg" class="grid-item" alt="" onerror="this.style.display='none'">
+        <video src="video2.mp4" class="grid-item" autoplay loop muted onerror="this.style.display='none'"></video>
+        <img src="photo4.jpg" class="grid-item" alt="" onerror="this.style.display='none'">
+        <img src="photo5.jpg" class="grid-item" alt="" onerror="this.style.display='none'">
+        <video src="video3.mp4" class="grid-item" autoplay loop muted onerror="this.style.display='none'"></video>
+        <img src="photo6.jpg" class="grid-item" alt="" onerror="this.style.display='none'">
+        <img src="photo7.jpg" class="grid-item" alt="" onerror="this.style.display='none'">
+        <video src="video4.mp4" class="grid-item" autoplay loop muted onerror="this.style.display='none'"></video>
+        <img src="photo8.jpg" class="grid-item" alt="" onerror="this.style.display='none'">
+    </div>
+
+    <div id="canvas-container"></div>
+
+    <section id="hero" class="section">
+        <h1 class="glitch-title">Ezra Gillon</h1>
+        <div class="hero-tag">
+            <a href="https://www.instagram.com/breakthroughskateboards/" target="_blank">breakthbrough skateboards</a>
+            <span>//</span>
+            <a href="https://diggyisdead.com" target="_blank">diggisdead</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="content-box">
+            <h2>Sponsorships & Street Core</h2>
+            <p>Rooted deep in the underground New Zealand skate scene, blending heavy punk ethos, dark cybersigilism, and raw grid infrastructure. Pushing limits and representing elite independent movements.</p>
+            <ul>
+                <li><strong>Primary Sponsor:</strong> <a href="https://www.instagram.com/breakthroughskateboards/" target="_blank" class="cyber-link">breakthbrough skateboards</a></li>
+                <li><strong>Collective / Hub:</strong> <a href="https://diggyisdead.com" target="_blank" class="cyber-link">diggisdead</a></li>
+                <li><strong>Instagram Operator:</strong> <a href="https://www.instagram.com/ezra.gillon/" target="_blank" class="cyber-link">@ezra.gillon</a></li>
+            </ul>
+            <div class="btn-group">
+                <a href="https://www.instagram.com/ezra.gillon/" target="_blank" class="cyber-btn">Access IG Profile</a>
+                <a href="https://diggyisdead.com" target="_blank" class="cyber-btn">Visit Diggy Is Dead</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="border-bottom: none;">
+        <div class="content-box" style="border-color: var(--cyber-cyan); box-shadow: 0 0 25px rgba(0, 255, 204, 0.25);">
+            <h2 style="color: var(--neon-red); border-color: rgba(255, 0, 60, 0.3);">Machinery // 1996 EG Civic Sedan</h2>
+            <p>When not stacking clips on concrete, dialing in the Generation 6 chassis takes over. Built with classic import style, responsive handling, and raw street aesthetic.</p>
+            <ul>
+                <li><strong>Platform:</strong> 1996 Honda Civic Gen 6 Sedan (5-speed manual)</li>
+                <li><strong>Build Spec:</strong> Lowered stance setup, Whale intake (deep aggressive induction tone), Nardi steering wheel setup.</li>
+                <li><strong>Utilities:</strong> Michelin wiper blades (all-weather visibility precision).</li>
+            </ul>
+
+            <div class="specs-grid">
+                <div><strong>Estimated Power:</strong> ~105 - 110 HP (SOHC D-series tuned flow)</div>
+                <div><strong>0-100 km/h:</strong> ~9.8s - 10.2s (Lightweight setup)</div>
+                <div><strong>Power-to-Weight:</strong> ~95 HP / Tonne</div>
+                <div><strong>Handling Profile:</strong> Stiffened lowered suspension geometry + direct Nardi feedback</div>
+            </div>
+            
+            <div class="media-grid">
+                <img src="photo1.jpg" class="media-slot" alt="Archive 1" onerror="this.style.display='none'">
+                <img src="photo2.jpg" class="media-slot" alt="Archive 2" onerror="this.style.display='none'">
+                <img src="photo3.jpg" class="media-slot" alt="Archive 3" onerror="this.style.display='none'">
+                <img src="photo4.jpg" class="media-slot" alt="Archive 4" onerror="this.style.display='none'">
+                <img src="photo5.jpg" class="media-slot" alt="Archive 5" onerror="this.style.display='none'">
+                <img src="photo6.jpg" class="media-slot" alt="Archive 6" onerror="this.style.display='none'">
+            </div>
+        </div>
+    </section>
+
     <script type="importmap">
         {
             "imports": {
@@ -29,116 +360,124 @@
         import * as THREE from 'three';
 
         // 1. Scene Setup
+        const container = document.getElementById('canvas-container');
         const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x050505, 0.05);
+        scene.fog = new THREE.FogExp2(0x080808, 0.04);
 
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 8;
+        camera.position.z = 7;
 
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
-        document.body.appendChild(renderer.domElement);
+        container.appendChild(renderer.domElement);
 
-        // 2. Materials (Cybersigil Aesthetic: Dark metal + Neon Wireframe)
-        const neonColor = 0xff003c; // Cyberpunk red/magenta (change to 0x00ffcc for cyan)
-        
+        // 2. Materials (Cybersigil Aesthetic: Dark metal + Neon Red/Cyan Wireframes)
+        const neonRed = 0xff003c;
+        const cyberCyan = 0x00ffcc;
+
         const solidMaterial = new THREE.MeshStandardMaterial({
-            color: 0x111111,
-            metalness: 0.9,
-            roughness: 0.2,
-            flatShading: true // Gives it a sharp, low-poly/edgy look
+            color: 0x0d0d0d,
+            metalness: 0.95,
+            roughness: 0.15,
+            flatShading: true
         });
 
-        const wireframeMaterial = new THREE.LineBasicMaterial({
-            color: neonColor,
+        const wireframeMaterialRed = new THREE.LineBasicMaterial({
+            color: neonRed,
             linewidth: 2,
             transparent: true,
-            opacity: 0.8
+            opacity: 0.85
         });
 
-        // 3. Build the Geometry Group
+        const wireframeMaterialCyan = new THREE.LineBasicMaterial({
+            color: cyberCyan,
+            linewidth: 2,
+            transparent: true,
+            opacity: 0.75
+        });
+
+        // 3. Build Cybersigil Cross Group
         const crossGroup = new THREE.Group();
 
-        // Helper function to create sharp, sigil-like parts
-        function createPart(geometry) {
+        function createPart(geometry, matColor = wireframeMaterialRed) {
             const mesh = new THREE.Mesh(geometry, solidMaterial);
             const edges = new THREE.EdgesGeometry(geometry);
-            const line = new THREE.LineSegments(edges, wireframeMaterial);
+            const line = new THREE.LineSegments(edges, matColor);
             mesh.add(line);
             return mesh;
         }
 
-        // Main Beams (Thin and sharp)
-        const verticalBeam = createPart(new THREE.BoxGeometry(0.4, 5, 0.4));
-        const horizontalBeam = createPart(new THREE.BoxGeometry(3.5, 0.4, 0.4));
-        horizontalBeam.position.y = 0.5; // Move horizontal bar up slightly
+        // Main Beams
+        const verticalBeam = createPart(new THREE.BoxGeometry(0.4, 4.8, 0.4), wireframeMaterialRed);
+        const horizontalBeam = createPart(new THREE.BoxGeometry(3.2, 0.4, 0.4), wireframeMaterialCyan);
+        horizontalBeam.position.y = 0.4;
         crossGroup.add(verticalBeam, horizontalBeam);
 
-        // Central core (Sharp diamond/octahedron)
-        const core = createPart(new THREE.OctahedronGeometry(0.6, 0));
-        core.position.y = 0.5;
+        // Central Core Diamond
+        const core = createPart(new THREE.OctahedronGeometry(0.65, 0), wireframeMaterialCyan);
+        core.position.y = 0.4;
         crossGroup.add(core);
 
-        // Add jagged "thorns" / sigil accents at the tips
-        const createSpike = (x, y, z, rotZ) => {
-            const spike = createPart(new THREE.ConeGeometry(0.3, 1.5, 4)); // 4-sided sharp cone
+        // Spikes / Thorns at Tips
+        const createSpike = (x, y, z, rotZ, mat) => {
+            const spike = createPart(new THREE.ConeGeometry(0.25, 1.4, 4), mat);
             spike.position.set(x, y, z);
             spike.rotation.z = rotZ;
             return spike;
         };
 
-        // Top spike
-        crossGroup.add(createSpike(0, 3, 0, 0));
-        // Bottom spike
-        crossGroup.add(createSpike(0, -3, 0, Math.PI));
-        // Left spike
-        crossGroup.add(createSpike(-2.2, 0.5, 0, Math.PI / 2));
-        // Right spike
-        crossGroup.add(createSpike(2.2, 0.5, 0, -Math.PI / 2));
+        crossGroup.add(createSpike(0, 2.8, 0, 0, wireframeMaterialRed));
+        crossGroup.add(createSpike(0, -2.8, 0, Math.PI, wireframeMaterialRed));
+        crossGroup.add(createSpike(-2.0, 0.4, 0, Math.PI / 2, wireframeMaterialCyan));
+        crossGroup.add(createSpike(2.0, 0.4, 0, -Math.PI / 2, wireframeMaterialCyan));
 
-        // Add an orbiting, sharp tribal ring to complete the sigil look
-        const ringGeo = new THREE.TorusGeometry(2.5, 0.05, 4, 8); // Jagged, low-segment ring
-        const sigilRing = createPart(ringGeo);
+        // Sigil Torus Ring
+        const ringGeo = new THREE.TorusGeometry(2.3, 0.04, 4, 10);
+        const sigilRing = createPart(ringGeo, wireframeMaterialCyan);
         sigilRing.rotation.x = Math.PI / 2;
         crossGroup.add(sigilRing);
 
         scene.add(crossGroup);
 
-        // 4. Lighting
-        const ambientLight = new THREE.AmbientLight(0x222222);
+        // 4. Lighting Setup
+        const ambientLight = new THREE.AmbientLight(0x111111);
         scene.add(ambientLight);
 
-        const pointLight1 = new THREE.PointLight(neonColor, 100, 20);
+        const pointLight1 = new THREE.PointLight(neonRed, 120, 20);
         pointLight1.position.set(2, 3, 4);
         scene.add(pointLight1);
 
-        const pointLight2 = new THREE.PointLight(0x00ffcc, 50, 20); // Secondary cyan light for contrast
-        pointLight2.position.set(-3, -3, -4);
+        const pointLight2 = new THREE.PointLight(cyberCyan, 80, 20);
+        pointLight2.position.set(-3, -3, -3);
         scene.add(pointLight2);
 
-        // 5. Animation Loop
+        // 5. Scroll Reactivity & Animation Loop
+        let scrollY = window.scrollY;
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY;
+        });
+
         function animate() {
             requestAnimationFrame(animate);
 
-            // Rotate the entire cross
-            crossGroup.rotation.y += 0.005;
+            crossGroup.rotation.y += 0.006;
             crossGroup.rotation.x += 0.002;
-            crossGroup.rotation.z = Math.sin(Date.now() * 0.001) * 0.1; // Slight breathing sway
+            
+            crossGroup.position.y = -(scrollY * 0.0015);
+            crossGroup.rotation.z = Math.sin(Date.now() * 0.001) * 0.08 + (scrollY * 0.0003);
 
-            // Counter-rotate the floating sigil ring for a magical effect
-            sigilRing.rotation.z -= 0.01;
+            sigilRing.rotation.z -= 0.012;
 
             renderer.render(scene, camera);
         }
 
-        // 6. Handle Window Resizing
-        window.addEventListener('resize', onWindowResize, false);
-        function onWindowResize() {
+        // 6. Responsive Resize Handling
+        window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
-        }
+        });
 
         animate();
     </script>
