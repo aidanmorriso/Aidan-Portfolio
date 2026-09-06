@@ -238,23 +238,33 @@
     </footer>
 
     <script src="js/main.js"></script>
-<script>
-    (function() {
-        fetch('https://ipapi.co/json/')
-            .then(response => response.json())
-            .then(data => {
-                const geoSpan = document.getElementById('geo-location');
-                if (geoSpan) {
-                    const location = data.city ? `${data.city}, ${data.country_name}` : 'Unknown Location';
-                    geoSpan.innerText = location;
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching IP location:', error);
-                const geoSpan = document.getElementById('geo-location');
-                if (geoSpan) geoSpan.innerText = 'Location unavailable';
-            });
-    })();
-</script>
+    <script>
+        (function() {
+            fetch('https://ipapi.co/json/')
+                .then(response => response.json())
+                .then(data => {
+                    const geoSpan = document.getElementById('geo-location');
+                    if (geoSpan) {
+                        const location = data.city ? `${data.city}, ${data.country_name}` : 'Unknown Location';
+                        geoSpan.innerText = location;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching IP location:', error);
+                    const geoSpan = document.getElementById('geo-location');
+                    if (geoSpan) geoSpan.innerText = 'Location unavailable';
+                });
+        })();
+    </script>
+
+<div id="lastfm-widget" class="lastfm-widget hidden">
+    <img id="lastfm-art" class="lastfm-art" src="" alt="Album Artwork" />
+    <div class="lastfm-info">
+        <span id="lastfm-status" class="lastfm-status">Connecting...</span>
+        <span id="lastfm-song" class="lastfm-song">Loading signal...</span>
+        <span id="lastfm-artist" class="lastfm-artist"></span>
+    </div>
+</div>
+
 </body>
 </html>

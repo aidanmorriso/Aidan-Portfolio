@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Classic Shoyu Ramen",
+    "description": "A traditional soy-sauce based ramen with tender chashu pork and a rich, savory broth.",
+    "ingredients": ["Ramen noodles", "Shoyu sauce", "Pork belly", "Green onions", "Soft-boiled egg", "Bamboo shoots"],
+    "instructions": "1. Prepare the shoyu broth. 2. Simmer the pork until tender. 3. Boil noodles. 4. Assemble the bowl with all toppings."
+  },
+  {
+    "name": "Spicy Miso Ramen",
+    "description": "A bold and spicy miso ramen topped with corn, butter, and spicy minced pork.",
+    "ingredients": ["Ramen noodles", "Miso paste", "Chili oil", "Corn", "Butter", "Minced pork", "Nori seaweed"],
+    "instructions": "1. Mix miso paste with chili oil and water to create the base. 2. Cook noodles. 3. Top with corn, butter, and pork. 4. Serve with a piece of nori."
+  },
+  {
+    "name": "Tonkotsu Ramen",
+    "description": "A creamy, milky white broth made by boiling pork bones for hours.",
+    "ingredients": ["Ramen noodles", "Pork bones", "Garlic", "Ginger", "Sesame oil", "Chashu", "Wood ear mushrooms"],
+    "instructions": "1. Boil pork bones for 8-12 hours to create a creamy broth. 2. Season with garlic and ginger. 3. Serve with noodles and chashu."
+  }
+]

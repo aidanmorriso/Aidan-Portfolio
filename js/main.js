@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
     
-    // --- System Boot-up Sequence ---
+    // --- System Boot-up Sequence --
     const bootSequence = [
         "INITIALIZING_SYSTEM_CORE...",
         "LOADING_NEURAL_NETWORKS...",
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
+    
     // --- Music Player Engine ---
     const musicPlayer = {
         audioCtx: null,
@@ -244,4 +244,35 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('musicVisualizer')) {
         musicPlayer.init();
     }
-})
+});
+
+// --- Last.fm Widget Integration ---
+const LASTFM_USERNAME = 'geesycharlic';
+const LASTFM_API_KEY = '5a5838b1bc7fd21c53f5b3433ae6a777';
+const API_URL = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USERNAME}&api_key=${LASTFM_API_KEY}&format=json&limit=1`;
+
+async function fetchLastFmTrack() {
+    try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        if (data.recenttracks && data.recenttracks.track.length > 0) {
+            const track = data.recenttracks.track[0];
+            const isPlaying = track['@attr'] && track['@attr'].nowplaying === 'true';
+            
+            const imageArray = track.image;
+            const imageUrl = imageArray.find(img => img.size === 'large')['#text'] || '';
+            
+            document.getElementById('lastfm-song').textContent = track.name;
+            document.getElementById('lastfm-artist').textContent = track.artist['#text'];
+            document.getElementById('lastfm-status').textContent = isPlaying ? 'Now Playing' : 'Last Played';
+            
+            document.getElementById('lastfm-art').src = imageUrl;
+            document.getElementById('lastfm-widget').classList.remove('hidden');
+        }
+    } catch (error) {
+        console.error('Error fetching Last.fm signal:', error);
+    }
+}
+
+fetchLastFmTrack();
+setInterval(fetchLastFmTrack, 30000);

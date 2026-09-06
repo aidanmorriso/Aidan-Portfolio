@@ -252,6 +252,7 @@
 
                 <!-- PLAYER TERMINAL -->
                 <div id="player-terminal" class="cyberpunk-panel" style="display: none;">
+
                     <div class="cyber-grid"></div>
                     <div style="position: relative; z-index: 1;">
                         <h3 id="now-playing-title" style="color: #00ffff; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 3px; text-shadow: 0 0 8px #00ffff; border-bottom: 1px solid rgba(0,255,255,0.3); padding-bottom: 10px;">Voyage_Data_Stream // System Idle</h3>
@@ -330,5 +331,56 @@
 
     <script src="js/main.js"></script>
     <script src="js/music-player.js"></script>
+
+<div id="lastfm-widget" class="lastfm-widget hidden">
+    <button id="btn-toggle-lastfm" class="cyber-btn-icon" style="margin-bottom: 10px;">TOGGLE LAST.FM</button>
+    <img id="lastfm-art" class="lastfm-art" src="" alt="Album Artwork" />
+    <div class="lastfm-info">
+        <span id="lastfm-status" class="lastfm-status">Connecting...</span>
+        <span id="lastfm-song" class="lastfm-song">Loading signal...</span>
+        <span id="lastfm-artist" class="lastfm-artist"></span>
+    </div>
+</div>
+
+
+<script>
+    const playerTerminal = document.getElementById('player-terminal');
+    const hideBtn = document.getElementById('btn-hide-player');
+    
+    if (hideBtn && playerTerminal) {
+        hideBtn.addEventListener('click', () => {
+            if (playerTerminal.style.display === 'none') {
+                playerTerminal.style.display = 'block';
+                hideBtn.innerText = 'HIDE';
+                hideBtn.style.borderColor = 'var(--neon-red)';
+                hideBtn.style.color = 'var(--neon-red)';
+            } else {
+                playerTerminal.style.display = 'none';
+                hideBtn.innerText = 'SHOW';
+                hideBtn.style.borderColor = 'var(--neon-cyan)';
+                hideBtn.style.color = 'var(--neon-cyan)';
+            }
+        });
+    }
+</script>
+
+<script>
+    const lastfmWidget = document.getElementById('lastfm-widget');
+    const toggleBtn = document.getElementById('btn-toggle-lastfm');
+    
+    if (toggleBtn && lastfmWidget) {
+        toggleBtn.addEventListener('click', () => {
+            const isHidden = lastfmWidget.classList.contains('hidden');
+            if (isHidden) {
+                lastfmWidget.classList.remove('hidden');
+                toggleBtn.innerText = 'HIDE LAST.FM';
+            } else {
+                lastfmWidget.classList.add('hidden');
+                toggleBtn.innerText = 'SHOW LAST.FM';
+            }
+        });
+    }
+</script>
+
 </body>
 </html>
