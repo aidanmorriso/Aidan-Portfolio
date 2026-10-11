@@ -1,278 +1,226 @@
-// HEARTBEAT: JS_VERSION_2.4_FINAL_CLEAN
-document.addEventListener('DOMContentLoaded', () => {
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    
-    // --- System Boot-up Sequence --
-    const bootSequence = [
-        "INITIALIZING_SYSTEM_CORE...",
-        "LOADING_NEURAL_NETWORKS...",
-        "ESTABLISHING_CYBER_LINK...",
-        "DECRYPTING_PORTFOLIO_DATA...",
-        "ACCESS_GRANTED.",
-        "WELCOME, USER."
+// AIDAN.V2 — shared shell: nav, starfield, boot, tabs, skills, last.fm
+(() => {
+    const PAGES = [
+        ['index.html', 'Home'],
+        ['index.html#about', 'About'],
+        ['index.html#skills', 'Skills'],
+        ['index.html#experience', 'Log'],
+        ['cars.html', 'Garage'],
+        ['connections.html', 'Connect'],
+        { label: 'Opinions', items: [['anime.html', 'Anime'], ['recipes.html', 'Recipes']] },
+        { label: 'Art', items: [['music.html', 'Music'], ['gallery.html', 'Gallery']] },
     ];
-    
-    const bootOverlay = document.createElement('div');
-    bootOverlay.style.cssText = `
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: #0a0a0a;
-        color: #00ffff;
-        font-family: 'Courier New', Courier, monospace;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        z-index: 10000;
-        padding: 20px;
-        text-align: center;
-    `;
-    document.body.appendChild(bootOverlay);
+    const here = location.pathname.split('/').pop() || 'index.html';
+    const link = ([href, label]) =>
+        `<li><a href="${href}"${href === here ? ' class="current"' : ''}>${label}</a></li>`;
 
-    let step = 0;
-    const interval = setInterval(() => {
-        if (step < bootSequence.length) {
-            bootOverlay.innerHTML = `<span>> ${bootSequence[step]}</span>`;
-            step++;
-        } else {
-            clearInterval(interval);
-            setTimeout(() => {
-                bootOverlay.style.opacity = '0';
-                bootOverlay.style.transition = 'opacity 1s ease';
-                setTimeout(() => bootOverlay.remove(), 1000);
-            }, 500);
-        }
-    }, 800);
-    
-    // Toggle Main Dropdown
-    if (navToggle) {
-        navToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-            navToggle.setAttribute('aria-expanded', !isExpanded);
-            navLinks.classList.toggle('show');
-        });
+    function buildShell() {
+        // background layers
+        const bg = document.createElement('div');
+        bg.innerHTML = `
+            <video class="video-bg" autoplay muted loop playsinline poster="assets/poster.jpg">
+                <source src="assets/bg-loop.mp4" type="video/mp4">
+            </video>
+            <div class="nebula"></div>
+            <canvas id="starfield"></canvas>`;
+        document.body.prepend(...bg.children);
+
+        // header
+        const header = document.createElement('header');
+        header.innerHTML = `
+            <div class="marquee" aria-hidden="true"><span>${
+                ' ✦ NO GODS NO MASTERS JUST HARDWARE ✦ TRANSMITTING FROM TITAHI BAY // AOTEAROA ✦ DIY OR DIE ✦ SIGNAL STRENGTH: LOUD ✦ ALL SYSTEMS FEEDBACK '.repeat(4)
+            }</span></div>
+            <nav>
+                <a class="logo" href="index.html">AIDAN<small>v2</small></a>
+                <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">MENU ☰</button>
+                <ul class="nav-links" id="nav-links">
+                    ${PAGES.map(p => Array.isArray(p) ? link(p) : `
+                        <li class="has-submenu">
+                            <a href="#" class="submenu-trigger">${p.label} ▾</a>
+                            <ul class="sub-menu">${p.items.map(link).join('')}</ul>
+                        </li>`).join('')}
+                </ul>
+            </nav>`;
+        document.querySelector('.video-bg + .nebula + canvas').after(header);
+
+        // footer + last.fm
+        const foot = document.createElement('div');
+        foot.innerHTML = `
+            <footer class="footer">
+                <span class="scrawl">made by hand, broken on purpose.</span>
+                &copy; ${new Date().getFullYear()} Aidan Morrison // signal ends here ✦
+            </footer>
+            <div id="lastfm-widget" class="lastfm-widget hidden">
+                <img id="lastfm-art" class="lastfm-art" src="" alt="">
+                <div class="lastfm-info">
+                    <span id="lastfm-status" class="lastfm-status">Tuning…</span>
+                    <span id="lastfm-song" class="lastfm-song">—</span>
+                    <span id="lastfm-artist" class="lastfm-artist"></span>
+                </div>
+            </div>`;
+        document.body.append(...foot.children);
     }
-    
-    // Submenu Logic (Art Dropdown)
-    const submenuTriggers = document.querySelectorAll('.submenu-trigger');
-    submenuTriggers.forEach(trigger => {
-        trigger.addEventListener('click', (e) => {
-            e.preventDefault();
+
+    function wireNav() {
+        const toggle = document.querySelector('.nav-toggle');
+        const links = document.querySelector('.nav-links');
+        toggle.addEventListener('click', e => {
             e.stopPropagation();
-            const parent = trigger.closest('.has-submenu');
-            if (parent) {
-                parent.classList.toggle('active');
+            const open = links.classList.toggle('show');
+            toggle.setAttribute('aria-expanded', open);
+        });
+        document.querySelectorAll('.submenu-trigger').forEach(t => t.addEventListener('click', e => {
+            e.preventDefault(); e.stopPropagation();
+            const li = t.closest('.has-submenu');
+            document.querySelectorAll('.has-submenu').forEach(o => o !== li && o.classList.remove('active'));
+            li.classList.toggle('active');
+        }));
+        document.addEventListener('click', e => {
+            if (!e.target.closest('nav')) {
+                links.classList.remove('show');
+                toggle.setAttribute('aria-expanded', 'false');
+                document.querySelectorAll('.has-submenu').forEach(o => o.classList.remove('active'));
             }
         });
-    });
-    
-    // Close submenus and main nav when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!navToggle.contains(e.target) && !navLinks.contains(e.target) && !e.target.closest('.has-submenu')) {
-            navLinks.classList.remove('show');
-            document.querySelectorAll('.has-submenu').forEach(el => el.classList.remove('active'));
-        }
-    });
-    
-    // Tab switching logic
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const target = btn.getAttribute('data-target');
-            
-            tabBtns.forEach(b => b.classList.remove('active'));
-            tabContents.forEach(c => c.classList.remove('active'));
-            
-            btn.classList.add('active');
-            const targetEl = document.getElementById(target);
-            if (targetEl) targetEl.classList.add('active');
-        });
-    });
-    
-    // Skill bubble expansion logic
-    const expandBtns = document.querySelectorAll('.expand-btn');
-    expandBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            const bubble = btn.closest('.skill-bubble');
-            if (bubble) {
-                bubble.classList.toggle('active');
+    }
+
+    function starfield() {
+        const c = document.getElementById('starfield');
+        const ctx = c.getContext('2d');
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let stars = [], w, h, shooting = null;
+        const resize = () => {
+            w = c.width = innerWidth * devicePixelRatio;
+            h = c.height = innerHeight * devicePixelRatio;
+            c.style.width = innerWidth + 'px'; c.style.height = innerHeight + 'px';
+            const n = Math.min(420, Math.floor(innerWidth * innerHeight / 3500));
+            stars = Array.from({ length: n }, () => ({
+                x: Math.random() * w, y: Math.random() * h,
+                z: Math.random() * .8 + .2,
+                tw: Math.random() * Math.PI * 2,
+                hue: [0, 0, 0, 300, 185, 75][Math.floor(Math.random() * 6)],
+            }));
+        };
+        resize(); addEventListener('resize', resize);
+        let scrollY = 0; addEventListener('scroll', () => scrollY = window.scrollY, { passive: true });
+        const frame = t => {
+            ctx.clearRect(0, 0, w, h);
+            for (const s of stars) {
+                const y = (s.y - scrollY * s.z * .35 * devicePixelRatio) % h;
+                const a = .5 + .5 * Math.sin(t / 700 * s.z + s.tw);
+                ctx.fillStyle = s.hue ? `hsla(${s.hue},100%,75%,${a})` : `rgba(255,255,255,${a})`;
+                const r = s.z * 1.6 * devicePixelRatio;
+                ctx.fillRect(s.x, y < 0 ? y + h : y, r, r);
+            }
+            if (!shooting && Math.random() < .004) {
+                shooting = { x: Math.random() * w * .7, y: Math.random() * h * .4, life: 1 };
+            }
+            if (shooting) {
+                const s = shooting, len = 160 * devicePixelRatio;
+                const g = ctx.createLinearGradient(s.x, s.y, s.x - len, s.y - len * .4);
+                g.addColorStop(0, `rgba(198,255,0,${s.life})`); g.addColorStop(1, 'transparent');
+                ctx.strokeStyle = g; ctx.lineWidth = 2 * devicePixelRatio;
+                ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(s.x - len, s.y - len * .4); ctx.stroke();
+                s.x += 14 * devicePixelRatio; s.y += 5.6 * devicePixelRatio; s.life -= .02;
+                if (s.life <= 0) shooting = null;
+            }
+            if (!reduce) requestAnimationFrame(frame);
+        };
+        requestAnimationFrame(frame);
+    }
+
+    function boot() {
+        if (sessionStorage.getItem('v2-booted')) return;
+        sessionStorage.setItem('v2-booted', '1');
+        const lines = [
+            '> POWER ON .................. OK',
+            '> SPINNING UP GALAXY.DRV .... OK',
+            '> LOADING ATTITUDE .......... 110%',
+            '> CHECKING FOR RULES ........ NONE FOUND',
+            '> TUNING TO 88.8 FM ......... LOCKED',
+            '> WELCOME TO THE UNDERGROUND.',
+        ];
+        const el = document.createElement('div');
+        el.id = 'boot';
+        document.body.append(el);
+        let i = 0;
+        const next = () => {
+            if (i < lines.length) {
+                const d = document.createElement('div');
+                d.className = 'line' + (lines[i].includes('NONE') ? ' err' : '');
+                d.textContent = lines[i++];
+                el.append(d);
+                setTimeout(next, 230);
             } else {
-                console.error('Could not find parent .skill-bubble');
+                setTimeout(() => { el.classList.add('gone'); setTimeout(() => el.remove(), 700); }, 450);
             }
-        });
-    });
-    
-    // --- Music Player Engine ---
-    const musicPlayer = {
-        audioCtx: null,
-        analyser: null,
-        source: null,
-        audioElement: null,
-        currentTrackIndex: 0,
-        tracks: [
-            "0% (feat. ZillaKami).m4a", "304.m4a", "41 Cypher.m4a", "4U.m4a", "5 Freeway.m4a",
-            "AWKWARD CAR DRIVE.m4a", "All the Time.m4a", "Aww Shit.m4a", "BIG.m4a", "Baby Father.m4a",
-            "Bad Ass Jit.m4a", "Beg Your Pardon.m4a", "Bestfriends.m4a", "Bet.m4a", "Big Shot Cream Soda.m4a",
-            "Book Bag (feat. BlueBucksClan).m4a", "Born With It.m4a", "Brown Munde.m4a", "COLORS.m4a", "Champagne Face.m4a",
-            "Change Ya Life.m4a", "Check This Out.m4a", "Choir.m4a", "Chopping Block (feat. Rpg Wok).m4a", "Cinderella.m4a",
-            "Click.m4a", "Courtesy.m4a", "Crash Dummy.m4a", "Crazy Story, Pt. 3.m4a", "Cyanide (feat. Ghostemane).m4a",
-            "DOAK PT2.m4a", "Dead Cracka (feat. BLP KOSHER).m4a", "Dear God.m4a", "Dirty Dan.m4a", "Don't Start Pt. 2.m4a",
-            "EVIL TWINS.m4a", "Easter Pink.m4a", "Errbody.m4a", "Fair Trade.m4a", "Feel What You Feelin.m4a",
-            "First Day Out.m4a", "Foot Fungus.m4a", "For The Night.m4a", "Freddy K.m4a", "Freddy Vs. Jason (feat. Loso3k0 & FREDOBAGZ).m4a",
-            "Freedom Of Speech.m4a", "From Dallas 2 Austin (feat. Quin NFN).m4a", "GARE DU NORD.m4a", "GATTI.m4a", "Get Bucks.m4a",
-            "Get Deady.m4a", "Ghostface Killers.m4a", "HEAT STICK.m4a", "Hellcat.m4a", "Hoes Come Easy.m4a",
-            "Häagen Dazs.m4a", "Jaat Da Muqabala.m4a", "Knife Talk.m4a", "Lemme See.m4a", "Let's Get It (Remix) (feat. 21 Savage).m4a",
-            "Long Year.m4a", "Making The Band (Danity Kane).m4a", "Material Girl.m4a", "Megitsune.m4a", "Mind Right (feat. Warhol.SS).m4a",
-            "NOTAHO3.m4a", "Never Tell Freestyle.m4a", "No Hook II.m4a", "No Show & Tell.m4a", "Ocean Spray.m4a",
-            "Old Dog.m4a", "On The Quarter Pipe.m4a", "One Time.m4a", "Onna Come Up.m4a", "P.O.P..m4a",
-            "POP BANDS.m4a", "ParaPara Cannibal (Extended mix).m4a", "Pcd Onda Backroad.m4a", "Perc Popper.m4a", "Phil Jackson.m4a",
-            "Poppin It (feat. Stinc Team).m4a", "Pressure.m4a", "Rick And Morty.m4a", "Ruth’s Chris Freestyle (feat. Drakeo the Ruler).m4a", "Self-Inflicted.m4a",
-            "ShaBar Shalom (feat. Blp Kosher).m4a", "SkeletonRaps.m4a", "SoIcyBoyz 2 (feat. Pooh Shiesty, Foogiano & Tay Keith).m4a", "Speak Up.m4a", "Spinnin (feat. Nemzzz) - Segway Remix.m4a",
-            "Straightenin.m4a", "Swing My Door.m4a", "TIED UP (feat. Tanboymiguel).m4a", "Tables Turn.m4a", "Tales from Tha Guttah.m4a",
-            "The Purge 2.m4a", "The Purge.m4a", "The Renegade Never Dies.m4a", "Thousand Ways.m4a", "Traplantic.m4a",
-            "Turn Heads.m4a", "Tweaker.m4a", "Two Door.m4a", "Unexplainable.m4a", "Unlucky Me.m4a",
-            "Venom.m4a", "Villains, pt. 2 Flipp.m4a", "Voo Doo.m4a", "Westside 2 the Westside.m4a", "Whuss the Deal.m4a",
-            "Wicked Witch.m4a", "Zone 2 No Censor.m4a", "party! (dance alone).m4a", "plata negra.m4a", "Åååfrestelse.m4a"
-        ],
-        init() {
-            this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            this.analyser = this.audioCtx.createAnalyser();
-            this.analyser.fftSize = 256;
-            this.setupVisualizer();
-            this.updatePlaylistUI();
-            this.setupControls();
-        },
-        setupVisualizer() {
-            const canvas = document.getElementById('musicVisualizer');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            const bufferLength = this.analyser.frequencyBinCount;
-            const dataArray = new Uint8Array(bufferLength);
+        };
+        el.addEventListener('click', () => { i = lines.length; el.classList.add('gone'); setTimeout(() => el.remove(), 700); });
+        next();
+    }
 
-            const draw = () => {
-                requestAnimationFrame(draw);
-                this.analyser.getByteFrequencyData(dataArray);
-                ctx.fillStyle = 'rgba(10, 10, 10, 0.2)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
-                const barWidth = (canvas.width / bufferLength) * 2.5;
-                let x = 0;
-                for (let i = 0; i < bufferLength; i++) {
-                    const barHeight = (dataArray[i] / 255) * canvas.height;
-                    ctx.fillStyle = `rgb(${dataArray[i] + 150}, 0, ${255 - dataArray[i]})`;
-                    ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-                    x += barWidth + 1;
-                }
-            };
-            draw();
-        },
-        setupControls() {
-            const playBtn = document.getElementById('btn-play');
-            const prevBtn = document.getElementById('btn-prev');
-            const nextBtn = document.getElementById('btn-next');
-            const volumeSlider = document.getElementById('volume-slider');
-
-            if (playBtn) playBtn.addEventListener('click', () => this.togglePlay());
-            if (prevBtn) prevBtn.addEventListener('click', () => this.prevTrack());
-            if (nextBtn) nextBtn.addEventListener('click', () => this.nextTrack());
-            if (volumeSlider) {
-                volumeSlider.addEventListener('input', (e) => {
-                    if (this.audioElement) this.audioElement.volume = e.target.value;
-                });
-            }
-        },
-        async loadTrack(index) {
-            if (this.audioElement) {
-                this.audioElement.pause();
-                this.audioElement.src = "";
-            }
-            
-            const trackName = this.tracks[index];
-            this.audioElement = new Audio(`./music/${trackName}`);
-            this.audioElement.crossOrigin = "anonymous";
-            
-            this.source = this.audioCtx.createMediaElementSource(this.audioElement);
-            this.source.connect(this.analyser);
-            this.analyser.connect(this.audioCtx.destination);
-            
-            this.audioElement.play();
-            document.getElementById('current-track-title').innerText = trackName.replace('.m4a', '').toUpperCase();
-            document.getElementById('current-track-artist').innerText = 'SYSTEM_ACTIVE_STREAM';
-            this.updatePlaylistUI();
-        },
-        togglePlay() {
-            if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
-            if (this.audioElement) {
-                if (this.audioElement.paused) {
-                    this.audioElement.play();
-                    document.getElementById('btn-play').innerText = 'PAUSE';
-                } else {
-                    this.audioElement.pause();
-                    document.getElementById('btn-play').innerText = 'EXECUTE';
-                }
-            }
-        },
-        nextTrack() {
-            this.currentTrackIndex = (this.currentTrackIndex + 1) % this.tracks.length;
-            this.loadTrack(this.currentTrackIndex);
-        },
-        prevTrack() {
-            this.currentTrackIndex = (this.currentTrackIndex - 1 + this.tracks.length) % this.tracks.length;
-            this.loadTrack(this.currentTrackIndex);
-        },
-        updatePlaylistUI() {
-            const list = document.getElementById('track-list');
-            if (!list) return;
-            list.innerHTML = '';
-            this.tracks.slice(0, 30).forEach((track, i) => {
-                const li = document.createElement('li');
-                li.className = i === this.currentTrackIndex ? 'active-track' : '';
-                li.innerHTML = `<span class="track-num">${i + 1}</span> ${track.replace('.m4a', '')}`;
-                list.appendChild(li);
+    function wireWidgets() {
+        // tabs
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.id === btn.dataset.target));
+        }));
+        // skills
+        document.querySelectorAll('.skill').forEach(s => s.addEventListener('click', () => {
+            s.classList.toggle('active');
+            s.querySelector('.expand-btn')?.setAttribute('aria-expanded', s.classList.contains('active'));
+        }));
+        // anime cards (click to expand/collapse)
+        document.querySelectorAll('.anime-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const isOpen = card.classList.toggle('open');
+                card.setAttribute('aria-expanded', isOpen);
             });
-            const countEl = document.getElementById('track-count');
-            if (countEl) countEl.innerText = `${this.currentTrackIndex + 1}/${this.tracks.length}`;
+        });
+        // vehicle cards (click to expand/collapse specs)
+        document.querySelectorAll('.vehicle-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const isOpen = card.classList.toggle('open');
+                card.setAttribute('aria-expanded', isOpen);
+            });
+        });
+        // gallery lightbox
+        const box = document.querySelector('.lightbox');
+        if (box) {
+            const img = box.querySelector('img');
+            document.querySelectorAll('.gallery-grid figure').forEach(f => f.addEventListener('click', () => {
+                img.src = f.dataset.full; img.alt = f.querySelector('img').alt; box.classList.add('open');
+            }));
+            box.addEventListener('click', () => box.classList.remove('open'));
+            addEventListener('keydown', e => e.key === 'Escape' && box.classList.remove('open'));
         }
-    };
-
-    if (document.getElementById('musicVisualizer')) {
-        musicPlayer.init();
     }
-});
 
-// --- Last.fm Widget Integration ---
-const LASTFM_USERNAME = 'geesycharlic';
-const LASTFM_API_KEY = '5a5838b1bc7fd21c53f5b3433ae6a777';
-const API_URL = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USERNAME}&api_key=${LASTFM_API_KEY}&format=json&limit=1`;
-
-async function fetchLastFmTrack() {
-    try {
-        const response = await fetch(API_URL);
-        const data = await response.json();
-        if (data.recenttracks && data.recenttracks.track.length > 0) {
-            const track = data.recenttracks.track[0];
-            const isPlaying = track['@attr'] && track['@attr'].nowplaying === 'true';
-            
-            const imageArray = track.image;
-            const imageUrl = imageArray.find(img => img.size === 'large')['#text'] || '';
-            
-            document.getElementById('lastfm-song').textContent = track.name;
-            document.getElementById('lastfm-artist').textContent = track.artist['#text'];
-            document.getElementById('lastfm-status').textContent = isPlaying ? 'Now Playing' : 'Last Played';
-            
-            document.getElementById('lastfm-art').src = imageUrl;
+    // --- Last.fm ---
+    const LASTFM_USER = 'geesycharlic';
+    const LASTFM_KEY = '5a5838b1bc7fd21c53f5b3433ae6a777';
+    async function lastfm() {
+        try {
+            const r = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USER}&api_key=${LASTFM_KEY}&format=json&limit=1`);
+            const t = (await r.json()).recenttracks?.track?.[0];
+            if (!t) return;
+            const now = t['@attr']?.nowplaying === 'true';
+            document.getElementById('lastfm-status').textContent = now ? '● on air' : 'last transmission';
+            document.getElementById('lastfm-song').textContent = t.name;
+            document.getElementById('lastfm-artist').textContent = t.artist['#text'];
+            document.getElementById('lastfm-art').src = (t.image.find(i => i.size === 'large') || {})['#text'] || '';
             document.getElementById('lastfm-widget').classList.remove('hidden');
-        }
-    } catch (error) {
-        console.error('Error fetching Last.fm signal:', error);
+        } catch (e) { /* offline, stay hidden */ }
     }
-}
 
-fetchLastFmTrack();
-setInterval(fetchLastFmTrack, 30000);
+    document.addEventListener('DOMContentLoaded', () => {
+        buildShell();
+        wireNav();
+        starfield();
+        boot();
+        wireWidgets();
+        lastfm();
+        setInterval(lastfm, 30000);
+    });
+})();
